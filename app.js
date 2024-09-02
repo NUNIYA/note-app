@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({
