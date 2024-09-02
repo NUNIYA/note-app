@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const methodOverride=require('method-override');
 const connectDB = require('./server/config/db');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -31,9 +32,11 @@ connectDB();
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 // Static files
 app.use(express.static('public'));
+
 
 // Templating engine
 app.use(expressLayouts);

@@ -1,0 +1,26 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+    <div class="row mb-4">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%= note.title %></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col d-flex justify-content-between align-items-center">
+            <h1 class="h3">View Note</h1>
+            <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" id="deleteButton" data-bs-target="#deleteModal">
+                Delete
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2><%= note.title %></h2>
+            <p><%= note.body %></p>
+        </div>
+    </div>
+</div>
+
+
