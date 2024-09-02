@@ -8,7 +8,7 @@ const dashboardcontroller = require('../controllers/dashboardcontroller');
  */
 router.get('/dashboard', isloggedIn, dashboardcontroller.dashboard); 
 router.get('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardViewNote); 
-router.post('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardUpdateNote); 
+router.put('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardUpdateNote); 
 
 
 module.exports = router;
