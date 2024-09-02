@@ -86,7 +86,7 @@ exports.dashboard = async (req, res) => {
   }
  
 /**
- * Delet/
+ * Delete/
   *Delete note
  */
 
@@ -97,4 +97,17 @@ exports.dashboard = async (req, res) => {
   }catch(error){
     console.log(error);
   }
+}
+
+
+/**
+ * GET/
+  *ADD notes
+ */
+
+
+exports.dashboardAddNote=async(req,res)=>{
+  res.render('dashboard/add',{
+    layout:'../views/layouts/dashboard'
+  });
 }
