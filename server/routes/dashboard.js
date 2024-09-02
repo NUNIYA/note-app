@@ -6,6 +6,9 @@ const dashboardcontroller = require('../controllers/dashboardcontroller');
 /**
  * dashboard routes
  */
-router.get('/dashboard', isloggedIn, dashboardcontroller.dashboard); // Apply the middleware here
+router.get('/dashboard', isloggedIn, dashboardcontroller.dashboard); 
+router.get('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardViewNote); 
+router.post('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardUpdateNote); 
+
 
 module.exports = router;
