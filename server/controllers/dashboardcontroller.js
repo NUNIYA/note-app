@@ -111,3 +111,18 @@ exports.dashboardAddNote=async(req,res)=>{
     layout:'../views/layouts/dashboard'
   });
 }
+
+/**
+ * POST/
+  *ADD notes
+ */
+exports.dashboardAddNoteSubmit=async(req,res)=>{
+try{
+  req.body.user=req.user.id;
+await Note.create(req.body)
+res.redirect('/dashboard')
+}catch(error){
+  console.log(error);
+
+}
+}
