@@ -20,8 +20,8 @@ exports.dashboard = async (req, res) => {
         { $match: { user: new mongoose.Types.ObjectId(req.user.id) } },  // Match notes to the current user
         {
           $project: {
-            title: { $substr: ["$title", 0, 30] },  // Trim title to 30 characters
-            body: { $substr: ["$body", 0, 100] },  // Trim body to 100 characters
+            title: { $substr: ["$title", 0, 30] },  
+            body: { $substr: ["$body", 0, 100] },  
           },
         },
       ])
@@ -77,7 +77,7 @@ exports.dashboard = async (req, res) => {
     try{
       await Note.findOneAndUpdate(
         {_id:req.params.id},
-        {title:req.body.title,body:req.body.body}
+        {title:req.body.title,body:req.body.body,updatedAt:Date.now()}
       ).where({user:req.user.id});
       res.redirect('/dashboard');
     }catch(error){
@@ -127,3 +127,42 @@ res.redirect('/dashboard')
 
 }
 }
+
+
+  /**
+ * GET /
+ * Search
+ */
+exports.dashboardSearch = async (req, res) => {
+  try {
+    res.render("dashboard/search", {
+      searchResults: "",
+      layout: "../views/layouts/dashboard",
+    });
+  } catch (error) {}
+};
+
+/**
+ * POST /
+ * Search For Notes
+ */
+exports.dashboardSearchSubmit = async (req, res) => {
+  try {
+    let searchTerm = req.body.searchTerm;
+    const searchNoSpecialChars = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+
+    const searchResults = await Note.find({
+      $or: [
+        { title: { $regex: new RegExp(searchNoSpecialChars, "i") } },
+        { body: { $regex: new RegExp(searchNoSpecialChars, "i") } },
+      ],
+    }).where({ user: req.user.id });
+
+    res.render("dashboard/search", {
+      searchResults,
+      layout: "../views/layouts/dashboard",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

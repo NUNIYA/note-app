@@ -12,6 +12,7 @@ router.put('/dashboard/item/:id', isloggedIn, dashboardcontroller.dashboardUpdat
 router.delete('/dashboard/item-delete/:id', isloggedIn, dashboardcontroller.dashboardDeleteNote);
 router.get('/dashboard/add', isloggedIn, dashboardcontroller.dashboardAddNote); 
 router.post('/dashboard/add', isloggedIn, dashboardcontroller.dashboardAddNoteSubmit);     
-
+router.get('/dashboard/search', isloggedIn, dashboardcontroller.dashboardSearch);
+router.post('/dashboard/search', isloggedIn, dashboardcontroller.dashboardSearchSubmit);
 
 module.exports = router;
