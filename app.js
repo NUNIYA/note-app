@@ -13,7 +13,12 @@ const app = express();
 const port = process.env.PORT || 10000;
 
 // Apply CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 
 // Set up session middleware
 app.use(session({
