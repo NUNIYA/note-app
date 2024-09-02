@@ -30,7 +30,7 @@ passport.use(
         }
       } catch (error) {
         console.log(error);
-        done(error, null); // Ensure the error is passed to done() to trigger failureRedirect
+        done(error, null); 
       }
     }
   )
